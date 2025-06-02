@@ -26,3 +26,28 @@ else:
 
 
 # rs = collection.find({'paises': 'España'}) # Buscar documentos donde se habla en España
+
+#* Insertar un nuevo documento
+
+nombre = input("Ingrese el nombre del nuevo lenguaje: ").capitalize()
+paises = input("Ingrese los paises donde se habla (separados por comas): ").capitalize().split(", ")
+
+nuevo_lenguaje = {
+    'id' : collection.count_documents({}) + 1,  # Generar un ID único
+    'nombre': nombre,
+    'paises': paises
+}
+
+nl = collection.insert_one(nuevo_lenguaje)  # Insertar el nuevo documento
+
+
+
+# if not collection.find_one({'nombre': nuevo_lenguaje['nombre']}):
+#     # Verificar si el lenguaje ya existe
+#     print(f"El lenguaje '{nuevo_lenguaje['nombre']}' ya existe.")
+# else:
+#     print(f"El lenguaje '{nuevo_lenguaje['nombre']}' no existe, se procederá a insertar.")
+#     collection.insert_one(nuevo_lenguaje)  # Insertar el nuevo documento
+
+# collection.insert_one(nuevo_lenguaje)  # Insertar el nuevo documento
+# print(f"Nuevo lenguaje '{nuevo_lenguaje['nombre']}' insertado correctamente.")
