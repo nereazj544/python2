@@ -25,4 +25,4 @@ else:
     print("Lenguaje no encontrado.")
 
 
-rs = collection.find({'paises': 'España'}) # Buscar documentos donde se habla en España
+# rs = collection.find({'paises': 'España'}) # Buscar documentos donde se habla en España
