@@ -17,3 +17,13 @@
 2025-06-02 15:37:44,937 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
 2025-06-02 15:37:47,464 - INFO - [SERVER]: Conexión aceptada desde: <socket.socket fd=1004, family=2, type=1, proto=0, laddr=('127.0.0.1', 6000), raddr=('127.0.0.1', 54267)>
 2025-06-02 15:37:47,464 - ERROR - [SERVER]: Error al iniciar el servidor: 'tuple' object has no attribute 'send'
+2025-06-02 15:53:30,288 - INFO - [SERVER]: Iniciando el servidor...
+2025-06-02 15:53:30,288 - INFO - [SERVER]: Iniciando el servidor en 127.0.0.1:6000
+2025-06-02 15:53:30,289 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
+2025-06-02 15:54:12,929 - INFO - [SERVER]: Conexión aceptada desde: <socket.socket fd=996, family=2, type=1, proto=0, laddr=('127.0.0.1', 6000), raddr=('127.0.0.1', 54616)>
+2025-06-02 15:54:12,929 - ERROR - [SERVER]: Error al iniciar el servidor: 'tuple' object has no attribute 'send'
+2025-06-02 15:54:52,970 - INFO - [SERVER]: Iniciando el servidor...
+2025-06-02 15:54:52,970 - INFO - [SERVER]: Iniciando el servidor en 127.0.0.1:6000
+2025-06-02 15:54:52,970 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
+2025-06-02 15:54:55,138 - INFO - [SERVER]: Conexión aceptada desde: <socket.socket fd=992, family=2, type=1, proto=0, laddr=('127.0.0.1', 6000), raddr=('127.0.0.1', 54629)>
+2025-06-02 15:54:55,138 - ERROR - [SERVER]: Error al iniciar el servidor: 'tuple' object has no attribute 'send'

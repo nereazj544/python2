@@ -26,10 +26,15 @@ def start():
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind((HOST, PORT))
         server.listen(5)  # Escuchar hasta 5 conexiones entrantes
+        server.timeout(60)  # Establecer un tiempo de espera de 60 segundos para aceptar conexiones
+        print("Servidor iniciado y escuchando en {}:{}".format(HOST, PORT))
+
+
+
         server_log("Servidor iniciado y escuchando en {}:{}".format(HOST, PORT))
         while True:
             add, conn = server.accept()  # Aceptar una conexión entrante
-            print("Conexión aceptada desde:", add)
+            
             server_log("Conexión aceptada desde: {}".format(add))
             
             # mensajes de envio al cliente
@@ -70,6 +75,7 @@ def start():
 
     except Exception as e:
         server_error(f"Error al iniciar el servidor: {e}")
+        print(f"Error al iniciar el servidor: {e}")
 
 start()
 
