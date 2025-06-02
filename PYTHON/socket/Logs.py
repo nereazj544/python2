@@ -3,9 +3,9 @@ import logging
 
 # CONFIGURACIÓN DEL LOG
 def setup_logging():
-    logging.basicConfig(filename="PYTHON/socket/log/info_servidor.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename="PYTHON/socket/log/info_servidor_2.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 def setup_cliente():
-    logging.basicConfig(filename="PYTHON/socket/log/info_cliente.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename="PYTHON/socket/log/info_cliente_2.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # CONFIGURACIÓN DEL LOG
 def server_log(message):
