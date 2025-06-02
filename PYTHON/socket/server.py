@@ -1,9 +1,21 @@
+
+# ! BIBLIOTECA PARA CREAR EL SERVIDOR Y CONEXION CON MONGODB
+
 import socket
+from pymongo import MongoClient
 from Logs import server_log, server_error, server_warning, server_debug, server_critical
 
 # CONFIGURACIÓN DEL SERVIDOR
 HOST = '127.0.0.1'
 PORT = 6000
+
+database_name = 'test_python_db'
+
+Collection1 = 'empresa'
+Collection2 = 'personajes'
+Collection3 = 'lenguajes'
+
+
 
 def start():
     try:
@@ -29,6 +41,30 @@ def start():
             conn.send(msg.encode('utf-8'))
             server_log("Mensaje enviado al cliente: {}".format(msg))
 
+            # RECIBIR MENSAJES DEL CLIENTE
+            data = conn.recv(1024).decode()
+            if not data:
+                server_warning("No se recibieron datos del cliente, cerrando conexión.")
+                break
+            server_log("Datos recibidos del cliente: {}".format(data))
+            print("Datos recibidos del cliente:", data)
+
+            if data == 1:
+                msg = 'Has seleccionado la coleccion empresa.'
+                conn.send(msg.encode('utf-8'))
+                server_log("Mensaje enviado al cliente: {}".format(msg))
+                
+                EmpresaColeccion(conn)
+
+
+            elif data == 2:
+                msg = 'Has seleccionado la coleccion personajes.'
+                conn.send(msg.encode('utf-8'))
+                server_log("Mensaje enviado al cliente: {}".format(msg))
+            elif data == 3:
+                msg = 'Has seleccionado la coleccion lenguajes.'
+                conn.send(msg.encode('utf-8'))
+                server_log("Mensaje enviado al cliente: {}".format(msg))
 
 
 
@@ -36,3 +72,24 @@ def start():
         server_error(f"Error al iniciar el servidor: {e}")
 
 start()
+
+
+
+def EmpresaColeccion(conn):
+    print("Conectando a la coleccion empresa...")
+    server_log("Conectando a la coleccion empresa...")
+
+    try:
+        client = MongoClient('mongodb://localhost:27017/')
+        database = client[database_name]  # Conectar a la base de datos
+        collection = database[Collection1]  # Conectar a la colección 'empresa'
+        server_log("Conexión a la colección 'empresa' establecida correctamente.")
+
+        msg = 'Conexión a la colección empresa establecida correctamente.'
+        server_log(msg)
+        conn.send(msg.encode('utf-8'))
+
+
+    except Exception as e:
+        server_error(f"Error al conectar a MongoDB: {e}")
+        return
