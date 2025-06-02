@@ -20,6 +20,16 @@ def start():
             print("Conexión aceptada desde:", add)
             server_log("Conexión aceptada desde: {}".format(add))
             
+            # mensajes de envio al cliente
+            msg = '¡Hola, bienvenido al habla el servidor! Por favor, envie un comando de los siguientes:\n' \
+            '1. Coleccion: empresa\n' \
+            '2. Coleccion: persoanjes\n' \
+            '3. Coleccion: lenguajes\n' \
+
+            conn.send(msg.encode('utf-8'))
+            server_log("Mensaje enviado al cliente: {}".format(msg))
+
+
 
 
     except Exception as e:
