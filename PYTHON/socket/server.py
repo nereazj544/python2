@@ -34,8 +34,8 @@ def start():
             
             # mensajes de envio al cliente
             msg = '¡Hola, bienvenido al habla el servidor! Por favor, envie un comando de los siguientes:\n' \
-            '1. Coleccion: empresa\n' \
-            '2. Coleccion: persoanjes\n' \
+            '1. Coleccion: empresa (SOLO DISPONIBLE ESTA)\n' \
+            '2. Coleccion: personajes\n' \
             '3. Coleccion: lenguajes\n' \
 
             conn.send(msg.encode('utf-8'))
@@ -49,7 +49,7 @@ def start():
             server_log("Datos recibidos del cliente: {}".format(data))
             print("Datos recibidos del cliente:", data)
 
-            if data == 1:
+            if data == '1':
                 msg = 'Has seleccionado la coleccion empresa.'
                 conn.send(msg.encode('utf-8'))
                 server_log("Mensaje enviado al cliente: {}".format(msg))
@@ -57,11 +57,11 @@ def start():
                 EmpresaColeccion(conn)
 
 
-            elif data == 2:
+            elif data == '2':
                 msg = 'Has seleccionado la coleccion personajes.'
                 conn.send(msg.encode('utf-8'))
                 server_log("Mensaje enviado al cliente: {}".format(msg))
-            elif data == 3:
+            elif data == '3':
                 msg = 'Has seleccionado la coleccion lenguajes.'
                 conn.send(msg.encode('utf-8'))
                 server_log("Mensaje enviado al cliente: {}".format(msg))
@@ -96,7 +96,51 @@ def EmpresaColeccion(conn):
             '4. Salir'
         conn.send(msg.encode('utf-8'))
         server_log("Opciones enviadas al cliente: {}".format(msg))
-        
+
+        while True:
+            data = conn.recv(1024).dcode()
+            if not data:
+                server_warning("No se recibieron datos del cliente, cerrando conexión.")
+                break
+            server_log("Datos recibidos del cliente: {}".format(data))
+
+            if data == '1':
+                doc = collection.find()
+                msg = "Documentos en la colección 'empresa':\n"
+                conn.send(msg.encode('utf-8'))
+                server_log("Enviando documentos al cliente...")
+                for docmnt in doc:
+                    msg += f"ID: {docmnt['id']}, Nombre: {docmnt['nombre']}\n"
+                conn.send(msg.encode('utf-8'))
+                conn.send(b'\n')
+                server_log("Documentos enviados al cliente.")
+            
+            elif data == '2':
+                msg = 'Ingrese el nombre del documento a buscar:'
+                conn.send(msg.encode('utf-8'))
+                server_log("Solicitando nombre del documento al cliente.")
+                nombre = conn.recv(1024).decode().capitalize()
+                server_log("Nombre del documento recibido: {}".format(nombre))
+                
+                r = collection.find_one({'nombre': nombre})
+                if r:
+                    msg = f"Documento encontrado: ID: {r['id']}, Nombre: {r['nombre']}"
+                    conn.send(msg.encode('utf-8'))
+                    server_log("Documento encontrado y enviado al cliente.")
+            elif data == '3':
+                msg = 'Ingrese el nombre del nuevo documento:'
+                conn.send(msg.encode('utf-8'))
+                server_log("Solicitando nombre del nuevo documento al cliente.")
+                nombre = conn.recv(1024).decode().capitalize()
+                server_log("Nombre del nuevo documento recibido: {}".format(nombre))
+                
+                nuevo_documento = {
+                    'id': collection.count_documents({}) + 1,  # Generar un ID único
+                    'nombre': nombre
+                }
+                
+                collection.insert_one(nuevo_documento)
+
 
 
     except Exception as e:
