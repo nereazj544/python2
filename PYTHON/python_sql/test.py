@@ -1,32 +1,13 @@
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
-def main():
-    print("Esto es un test de conexión a MongoDB")
+client = MongoClient('mongodb://localhost:27017/') #Configuración de conexión
 
-main()
+database_name = client['test_python_db'] # Nombre de la base de datos
+collection = database_name['Lenguajes'] # Nombre de la colección
 
-def test_mongodb_connection():
-    
+doc = collection.find()
 
-    try:
-        client = MongoClient('mongodb://localhost:27017/')
-        client.admin.command('ping')
-        print("Conexión exitosa a MongoDB")
-        return True
-    except ConnectionFailure as e:
-        print(f"Error de conexión a MongoDB: {e}")
-        return False
-    from pymongo.errors import ConnectionFailure
+for docmnt in doc:
+    print(docmnt)
 
-    try:
-        client = MongoClient('mongodb://localhost:27017/')
-        client.admin.command('ping')
-        print("Conexión exitosa a MongoDB")
-        return True
-    except ConnectionFailure as e:
-        print(f"Error de conexión a MongoDB: {e}")
-        return False
-
-
-test_mongodb_connection()
