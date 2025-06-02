@@ -33,6 +33,10 @@ class Server():
             self.s.settimeout(60)  # Set a timeout of 60 seconds for accepting connections
             server_log("Servidor iniciado y escuchando en {}:{}".format(HOST, PORT))
             print("Servidor iniciado y escuchando en {}:{}".format(HOST, PORT))
+            while True:
+                add, conn = self.s.accept()
+                server_log("Conexión aceptada desde: {}".format(add))
+                
 
         except Exception as e:
             server_error("Error al iniciar el servidor: {}".format(e))
