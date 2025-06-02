@@ -89,6 +89,15 @@ def EmpresaColeccion(conn):
         server_log(msg)
         conn.send(msg.encode('utf-8'))
 
+        msg = 'Opciones disponibles:\n' \
+            '1. Ver todos los documentos\n' \
+            '2. Buscar un documento por nombre\n' \
+            '3. Insertar un nuevo documento\n' \
+            '4. Salir'
+        conn.send(msg.encode('utf-8'))
+        server_log("Opciones enviadas al cliente: {}".format(msg))
+        
+
 
     except Exception as e:
         server_error(f"Error al conectar a MongoDB: {e}")
