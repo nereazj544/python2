@@ -15,10 +15,15 @@ Collection1 = 'empresa'
 Collection2 = 'personajes'
 Collection3 = 'lenguajes'
 
+class MongoDB():
+    print("Iniciando conexión a MongoDB...")
+    
 
 
+
+# Clase para manejar el servidor
 class Server():
-    def __init__(self):
+    def __init__(self): # Inicialización del servidor de mongo y el socket
         self.mongo = MongoClient('mongodb://localhost:27017/')
         self.s = None
     
