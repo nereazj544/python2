@@ -1,0 +1,9 @@
+2025-06-04 09:46:51,670 - INFO - [SERVER]: SERVER ENCENDIDO
+2025-06-04 09:46:51,701 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
+2025-06-04 09:54:10,045 - INFO - [SERVER]: SERVER ENCENDIDO
+2025-06-04 09:54:10,051 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
+2025-06-04 09:54:14,491 - INFO - [SERVER]: Conexion aceptada desde: <socket.socket fd=1044, family=2, type=1, proto=0, laddr=('127.0.0.1', 6000), raddr=('127.0.0.1', 55304)>
+2025-06-04 10:08:57,530 - INFO - [SERVER]: SERVER ENCENDIDO
+2025-06-04 10:08:57,539 - INFO - [SERVER]: Servidor iniciado y escuchando en 127.0.0.1:6000
+2025-06-04 10:10:58,774 - INFO - [SERVER]: Conexion aceptada desde: ('127.0.0.1', 60943)
+2025-06-04 10:11:06,686 - INFO - [SERVER]: Datos recibidos del cliente: empresa
