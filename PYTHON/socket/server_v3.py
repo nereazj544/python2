@@ -46,19 +46,20 @@ class Server:
                     break
                 server_log("Datos recibidos del cliente: {}".format(msg))
         
-            if msg.lower() == "empresa":
+        # ? mensajes del cliente (opciones)
+            if msg.lower() == "empresa": # Coleccion empresa
                 coleccionEmpresa(conn)
                 print("Opcion: Empresa")
-            elif msg.lower() == "personaje":
+            elif msg.lower() == "personaje": # Coleccion personaje
                 # coleccionPersonaje()
                 print("Opcion: Personaje")
-            elif msg.lower() == "lenguajes":
+            elif msg.lower() == "lenguajes": # Coleccion lenguajes
                 print("Opcion: lenguajes")
                 # coleccionLenguajes()
             else:
                 msg = "NO HAS ELEGIDO UNA OPCION CORRECTA"
                 server_warning("CLIENTE NO ELIGIO OPCION CORRECTA")
-                # break
+                break
             try:
                 server_log("Iniciando el servidor...")
                 Server()
