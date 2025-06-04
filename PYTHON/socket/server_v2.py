@@ -16,8 +16,24 @@ Collection2 = 'personajes'
 Collection3 = 'lenguajes'
 
 class MongoDB():
-    print("Iniciando conexión a MongoDB...")
-    
+    def __init__(self, db_name=database_name):
+        print("Iniciando conexión a MongoDB...")
+        try:
+            self.client = MongoClient()
+            self.db = self.client[db_name]
+
+            print("Se ha conectado con MongoDB")
+            
+            # TODO: GESTIONAR COMANDOS DEL CLIENTE
+            # * Comandos: insertar nuevo elemento y buscar elemento
+            
+
+            
+
+
+        except Exception as e:
+            server_error(f"Se ha producido un error: {e}")
+            print(f"Se ha producido un error: {e}")
 
 
 
